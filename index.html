@@ -18,11 +18,24 @@ body {
 }
 
 .section {
+  background: rgba(255, 255, 255, 0.85);
   padding: 60px 20px;
   text-align: center;
+  border: 20px solid #FFD1D1;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
 }
 
 .text-box {
+   animation: fadeUp 1s ease;}
+  @keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
   display: inline-block;
   background: rgba(255, 191, 192, 0.8);
   padding: 15px 25px;
