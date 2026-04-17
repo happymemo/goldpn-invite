@@ -5,12 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>황금비앤피 초대장</title>
 
-<!-- 카카오톡 썸네일 -->
-<meta property="og:title" content="황금비앤피 봄 야유회 초대장 🌸">
-<meta property="og:description" content="2026년 5월 1일 ~ 2일, 함께하는 특별한 시간">
-<meta property="og:image" content="https://i.imgur.com/여기에썸네일.jpg">
-<meta property="og:type" content="website">
-
 <style>
 body {
   margin: 0;
@@ -24,17 +18,11 @@ body {
   text-align: center;
 }
 
-.hero img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
 .text-box {
   display: inline-block;
-  background: rgba(255, 105, 180, 0.85);
-  padding: 12px 20px;
-  border-radius: 12px;
+  background: rgba(255, 105, 180, 0.9);
+  padding: 15px 25px;
+  border-radius: 16px;
   color: white;
   margin-top: 10px;
 }
@@ -47,15 +35,12 @@ body {
   line-height: 1.8;
 }
 
-.gallery img {
-  width: 100%;
-  height: auto;
-  border-radius: 20px;
-  display: block;
-  margin: 0 auto;
+h1 {
+  font-size: 42px;
 }
 
 p {
+  font-size: 20px;
   word-break: keep-all;
   line-height: 1.6;
 }
@@ -66,15 +51,9 @@ p {
 <body>
 
 <!-- 메인 -->
-<div class="hero">
-  <img src="https://i.imgur.com/여기에메인이미지.jpg">
-</div>
-
-<!-- 초대 문구 -->
 <div class="section">
-  <h2><span class="text-box">황금비앤피 봄 야유회 🌸</span></h2>
-  <p><span class="text-box">따뜻한 봄날,
-  소중한 분들을 초대합니다 😊</span></p>
+  <h1><span class="text-box">🌸 황금비앤피 봄 야유회 🌸</span></h1>
+  <p><span class="text-box">따뜻한 봄날,<br>소중한 분들을 초대합니다 😊</span></p>
 </div>
 
 <!-- 일정 안내 -->
@@ -84,7 +63,7 @@ p {
   <p>📌 장소 : 문경 최고의 장소</p>
 </div>
 
-<!-- 행사 소개 -->
+<!-- 소개 -->
 <div class="section">
   <p>
     황금비앤피가 준비한<br>
