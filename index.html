@@ -420,6 +420,86 @@
   .sep-line { flex: 1; height: 1px; background: rgba(200,140,140,0.2); }
   .sep-icon { font-size: 18px; color: var(--blush); }
 
+  /* ─── 계좌번호 ─── */
+  .account-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 28px;
+  }
+
+  .account-card {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .account-card {
+    background: var(--warm-white);
+    border: 1px solid rgba(200,140,140,0.2);
+    border-radius: 20px;
+    padding: 28px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform .3s ease, box-shadow .3s ease;
+  }
+
+  .account-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(155,92,100,0.12);
+  }
+
+  .account-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--blush), var(--gold));
+  }
+
+  .account-bank {
+    font-size: 13px; letter-spacing: 2px;
+    color: var(--rose); margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+
+  .account-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 400;
+    color: var(--charcoal);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+
+  .account-holder {
+    font-size: 13px; color: #9a7a7a;
+    margin-bottom: 20px;
+  }
+
+  .copy-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: transparent;
+    border: 1px solid var(--blush);
+    color: var(--deep-rose);
+    padding: 9px 20px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-family: 'Noto Serif KR', serif;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all .2s ease;
+  }
+
+  .copy-btn:hover {
+    background: var(--blush);
+    color: #fff;
+    border-color: var(--blush);
+  }
+
+  .copy-btn.copied {
+    background: var(--sage);
+    border-color: var(--sage);
+    color: #fff;
+  }
+
   /* ─── 스크롤 reveal ─── */
   .reveal {
     opacity: 0;
@@ -591,6 +671,29 @@
   </div>
 </section>
 
+<div class="sep"><div class="sep-line"></div><div class="sep-icon">💛</div><div class="sep-line"></div></div>
+
+<!-- ── 마음 전하기 ── -->
+<section class="reveal">
+  <p class="section-label">Gift · 마음 전하기</p>
+  <h2 class="section-title">축하의 마음을 전해주세요</h2>
+  <p class="section-body">
+    참석이 어려우신 분들께서는<br>
+    따뜻한 마음만으로도 충분히 감사합니다 🌸
+  </p>
+  <div class="account-wrap">
+    <div class="account-card">
+      <div class="account-bank">🏦 국민은행</div>
+      <div class="account-number">123-456-789012</div>
+      <div class="account-holder">예금주 · 홍길동</div>
+      <button class="copy-btn" onclick="copyAccount('123-456-789012', this)">
+        계좌번호 복사
+      </button>
+    </div>
+
+  </div>
+</section>
+
 <!-- ── 마무리 ── -->
 <div class="closing">
   <h2 class="closing-title">함께여서<br>더 아름다운 봄</h2>
@@ -603,6 +706,18 @@
 </div>
 
 <script>
+  // 계좌번호 복사
+  function copyAccount(number, btn) {
+    navigator.clipboard.writeText(number).then(() => {
+      btn.textContent = '✓ 복사됨!';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = '계좌번호 복사';
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  }
+
   // 스크롤 reveal
   const reveals = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver(entries => {
