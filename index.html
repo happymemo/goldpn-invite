@@ -3,105 +3,617 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>황금비앤피 초대장</title>
-
+<title>황금비앤비 봄 야유회 초대장</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
 <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  @font-face {
-  font-family: 'omyu pretty';
-  src: url('omyu pretty.ttf');
-}
-
-body {
-  background-image: url('https://i.imgur.com/VOXYU9A.jpeg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed; /* 스크롤 시 고정 */
-  margin: 0;
-  font-family: 'omyu pretty', sans-serif;
-  
-  color: #333;
-}
-
-.section {
-  background: rgba(255, 255, 255, 0.85);
-  padding: 40px 20px;
-  text-align: center;
-  border: 2px solid #FFD1D1;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-}
-
-.text-box {
-   animation: fadeUp 1s ease;}
-  @keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
+  :root {
+    --cream: #FDF6EE;
+    --blush: #E8B4B8;
+    --rose: #C97C84;
+    --deep-rose: #9B5C64;
+    --sage: #8FAF8A;
+    --gold: #C9A96E;
+    --charcoal: #3A3030;
+    --warm-white: #FAF3EC;
   }
-  to {
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Serif KR', serif;
+    background-color: var(--cream);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* ─── 히어로 ─── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #1a0f0f;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('https://i.imgur.com/VOXYU9A.jpeg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.55;
+    transform: scale(1.05);
+    animation: slowZoom 20s ease-in-out infinite alternate;
+  }
+
+  @keyframes slowZoom {
+    from { transform: scale(1.05); }
+    to   { transform: scale(1.12); }
+  }
+
+  /* 페탈 오버레이 */
+  .hero::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(26,15,15,0.15) 0%,
+      rgba(200,130,130,0.08) 50%,
+      rgba(26,15,15,0.55) 100%
+    );
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    text-align: center;
+    padding: 40px 24px;
+    animation: fadeUp 1.4s cubic-bezier(.22,1,.36,1) both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    letter-spacing: 4px;
+    color: var(--blush);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 1s .3s cubic-bezier(.22,1,.36,1) forwards;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 10vw, 88px);
+    font-weight: 300;
+    color: #fff;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+    opacity: 0;
+    animation: fadeUp 1s .5s cubic-bezier(.22,1,.36,1) forwards;
+  }
+
+  .hero-title em {
+    display: block;
+    font-style: italic;
+    color: var(--blush);
+  }
+
+  .hero-subtitle {
+    font-size: 16px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.9;
+    letter-spacing: 1px;
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 1s .7s cubic-bezier(.22,1,.36,1) forwards;
+  }
+
+  .hero-divider {
+    width: 60px; height: 1px;
+    background: var(--blush);
+    margin: 0 auto 40px;
+    opacity: 0;
+    animation: fadeUp 1s .9s cubic-bezier(.22,1,.36,1) forwards;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 32px; left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: rgba(255,255,255,0.5);
+    font-size: 11px; letter-spacing: 3px;
+    text-transform: uppercase;
+    animation: fadeUp 1s 1.2s cubic-bezier(.22,1,.36,1) both;
+  }
+
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: .5; transform: scaleY(1); }
+    50%       { opacity: 1;  transform: scaleY(1.2); }
+  }
+
+  /* ─── 공통 섹션 ─── */
+  section {
+    padding: 80px 24px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: var(--rose);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 28px;
+    color: var(--charcoal);
+  }
+
+  .section-body {
+    font-size: 16px;
+    line-height: 2;
+    color: #5a4a4a;
+    word-break: keep-all;
+  }
+
+  /* ─── 인사말 ─── */
+  .greeting {
+    border-left: 2px solid var(--blush);
+    padding-left: 32px;
+    position: relative;
+  }
+
+  .greeting::before {
+    content: '❝';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 72px;
+    color: var(--blush);
+    position: absolute;
+    top: -20px; left: -10px;
+    opacity: .3;
+    line-height: 1;
+  }
+
+  /* ─── 일정 카드 ─── */
+  .schedule-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 32px;
+  }
+
+  @media (max-width: 520px) {
+    .schedule-grid { grid-template-columns: 1fr; }
+  }
+
+  .schedule-card {
+    background: var(--warm-white);
+    border: 1px solid rgba(200,140,140,0.2);
+    border-radius: 16px;
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+    transition: transform .3s ease, box-shadow .3s ease;
+  }
+
+  .schedule-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(155,92,100,0.12);
+  }
+
+  .schedule-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: linear-gradient(to bottom, var(--blush), var(--rose));
+    border-radius: 4px 0 0 4px;
+  }
+
+  .card-icon { font-size: 28px; margin-bottom: 12px; }
+  .card-label {
+    font-size: 11px; letter-spacing: 3px;
+    color: var(--rose); text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .card-value {
+    font-size: 18px; font-weight: 600;
+    color: var(--charcoal); line-height: 1.5;
+  }
+  .card-sub {
+    font-size: 13px; color: #9a7a7a; margin-top: 4px;
+  }
+
+  /* ─── 프로그램 타임라인 ─── */
+  .timeline {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .tl-item {
+    display: grid;
+    grid-template-columns: 72px 1px 1fr;
+    gap: 0 20px;
+    align-items: start;
+  }
+
+  .tl-time {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--rose);
+    padding-top: 4px;
+    text-align: right;
+  }
+
+  .tl-line-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tl-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--rose);
+    border: 2px solid var(--cream);
+    outline: 1px solid var(--blush);
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  .tl-connector {
+    width: 1px;
+    flex: 1;
+    background: linear-gradient(to bottom, var(--blush), rgba(232,180,184,0.1));
+    min-height: 40px;
+  }
+
+  .tl-item:last-child .tl-connector { display: none; }
+
+  .tl-content {
+    padding-bottom: 32px;
+  }
+
+  .tl-title {
+    font-size: 16px; font-weight: 600;
+    color: var(--charcoal); margin-bottom: 4px;
+  }
+
+  .tl-desc {
+    font-size: 14px; color: #9a7a7a; line-height: 1.7;
+    word-break: keep-all;
+  }
+
+  /* ─── 지도 안내 ─── */
+  .location-box {
+    background: var(--warm-white);
+    border-radius: 20px;
+    padding: 36px 32px;
+    margin-top: 28px;
+    border: 1px solid rgba(200,140,140,0.15);
+    text-align: center;
+  }
+
+  .location-name {
+    font-size: 22px; font-weight: 600;
+    color: var(--deep-rose); margin-bottom: 8px;
+  }
+
+  .location-addr {
+    font-size: 14px; color: #9a7a7a; margin-bottom: 24px;
+    line-height: 1.7;
+  }
+
+  .map-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--rose);
+    color: #fff;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-size: 14px;
+    text-decoration: none;
+    font-family: 'Noto Serif KR', serif;
+    letter-spacing: 1px;
+    transition: background .2s ease, transform .2s ease;
+  }
+  .map-btn:hover {
+    background: var(--deep-rose);
+    transform: scale(1.03);
+  }
+
+  /* ─── 준비물 태그 ─── */
+  .tag-wrap {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 28px;
+  }
+
+  .tag {
+    background: rgba(232,180,184,0.2);
+    border: 1px solid var(--blush);
+    border-radius: 50px;
+    padding: 8px 18px;
+    font-size: 14px;
+    color: var(--deep-rose);
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  /* ─── 마무리 ─── */
+  .closing {
+    background: linear-gradient(135deg, #3A2020 0%, #5a2e2e 100%);
+    color: #fff;
+    text-align: center;
+    padding: 100px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .closing::before {
+    content: '🌸';
+    position: absolute;
+    font-size: 200px;
+    opacity: .04;
+    top: -30px; right: -30px;
+    transform: rotate(-20deg);
+  }
+
+  .closing-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 7vw, 56px);
+    font-weight: 300;
+    line-height: 1.3;
+    margin-bottom: 24px;
+    color: var(--blush);
+  }
+
+  .closing-body {
+    font-size: 16px;
+    line-height: 2;
+    color: rgba(255,255,255,0.65);
+    max-width: 400px;
+    margin: 0 auto 40px;
+    word-break: keep-all;
+  }
+
+  .closing-sig {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--gold);
+    letter-spacing: 2px;
+  }
+
+  /* ─── 구분선 ─── */
+  .sep {
+    display: flex; align-items: center; gap: 16px;
+    padding: 0 24px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .sep-line { flex: 1; height: 1px; background: rgba(200,140,140,0.2); }
+  .sep-icon { font-size: 18px; color: var(--blush); }
+
+  /* ─── 스크롤 reveal ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity .8s ease, transform .8s cubic-bezier(.22,1,.36,1);
+  }
+  .reveal.visible {
     opacity: 1;
     transform: translateY(0);
   }
-  display: inline-block;
-  background: rgba(255, 191, 192, 0.8);
-  padding: 15px 25px;
-  border-radius: 16px;
-  color: white;
-  margin-top: 10px;
-}
-
-.info {
-  background: rgba(255,255,255,0.9);
-  border-radius: 20px;
-  margin: 20px;
-  padding: 30px 20px;
-  line-height: 1.8;
-}
-
-h1 {
-  font-size: 42px;
-}
-
-p {
-  font-size: 20px;
-  word-break: keep-all;
-  line-height: 1.6;
-}
-
 </style>
 </head>
-
 <body>
 
-<!-- 메인 -->
-<div class="text-box">
-  <h2>🌸 황금비앤피 봄 야유회 🌸</h2>
-  <p>따뜻한 봄날,<br>소중한 분들을 초대합니다 😊</p>
+<!-- ── 히어로 ── -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">황금비앤피 · Spring Gathering 2026</p>
+    <h1 class="hero-title">
+      봄 야유회<em>초대장</em>
+    </h1>
+    <div class="hero-divider"></div>
+    <p class="hero-subtitle">
+      따뜻한 봄날, 소중한 분들과 함께<br>
+      잊지 못할 하루를 만들어가고자 합니다
+    </p>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>scroll</span>
+  </div>
 </div>
 
-<!-- 일정 안내 -->
-<div class="section info">
-  <h2>📍 일정 안내</h2>
-  <p>📅 2026년 5월 1일 ~ 2일</p>
-  <p>📌 장소 : 문경 </p>
-</div>
+<!-- ── 인사말 ── -->
+<section class="reveal">
+  <p class="section-label">Invitation · 인사말</p>
+  <h2 class="section-title">함께해 주세요</h2>
+  <div class="greeting">
+    <p class="section-body">
+      완연한 봄이 찾아온 이 좋은 계절에,<br>
+      황금비앤피의 모든 분들을 따뜻한 자리에 초대합니다.<br><br>
+      바쁜 일상 속에서도 서로 가까워지고<br>
+      새로운 추억을 함께 만들어 가는 시간이 되기를 바라며,<br>
+      정성을 담아 이 자리를 마련했습니다.<br><br>
+      귀한 발걸음 해주신다면 진심으로 감사드리겠습니다. 🌿
+    </p>
+  </div>
+</section>
 
-<!-- 소개 -->
-<div class="section">
-  <p>
-    황금비앤피가 준비한<br>
-    특별한 봄 야유회에<br>
-    함께해주시기를 바랍니다 🌿
+<div class="sep"><div class="sep-line"></div><div class="sep-icon">🌸</div><div class="sep-line"></div></div>
+
+<!-- ── 일정 ── -->
+<section class="reveal">
+  <p class="section-label">Schedule · 일정</p>
+  <h2 class="section-title">언제, 어디서</h2>
+  <div class="schedule-grid">
+    <div class="schedule-card">
+      <div class="card-icon">📅</div>
+      <div class="card-label">Date</div>
+      <div class="card-value">2026년 5월 1일<br>— 2일</div>
+      <div class="card-sub">1박 2일</div>
+    </div>
+    <div class="schedule-card">
+      <div class="card-icon">📍</div>
+      <div class="card-label">Location</div>
+      <div class="card-value">경북 문경</div>
+      <div class="card-sub">문경 최고의 장소</div>
+    </div>
+    <div class="schedule-card">
+      <div class="card-icon">🕐</div>
+      <div class="card-label">출발</div>
+      <div class="card-value">오전 9:00</div>
+      <div class="card-sub">5월 1일 (금)</div>
+    </div>
+    <div class="schedule-card">
+      <div class="card-icon">🏠</div>
+      <div class="card-label">귀가</div>
+      <div class="card-value">오후 5:00</div>
+      <div class="card-sub">5월 2일 (토)</div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"><div class="sep-line"></div><div class="sep-icon">🌿</div><div class="sep-line"></div></div>
+
+<!-- ── 프로그램 ── -->
+<section class="reveal">
+  <p class="section-label">Program · 프로그램</p>
+  <h2 class="section-title">이런 시간이 준비되어 있어요</h2>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-time">1일차</div>
+      <div class="tl-line-wrap"><div class="tl-dot"></div><div class="tl-connector"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🚌 출발 &amp; 이동</div>
+        <div class="tl-desc">단체 이동으로 함께 떠나는 설레는 시작.<br>차 안에서도 이야기꽃을 피워봐요!</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time"></div>
+      <div class="tl-line-wrap"><div class="tl-dot"></div><div class="tl-connector"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🌸 문경 명소 탐방</div>
+        <div class="tl-desc">봄꽃이 만개한 문경의 아름다운 명소들을 함께 거닐며 자연의 향기를 만끽합니다.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time"></div>
+      <div class="tl-line-wrap"><div class="tl-dot"></div><div class="tl-connector"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🍽️ 함께하는 만찬</div>
+        <div class="tl-desc">문경의 로컬 맛집에서 맛있는 음식과 함께 도란도란 이야기를 나눕니다.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">2일차</div>
+      <div class="tl-line-wrap"><div class="tl-dot"></div><div class="tl-connector"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🌄 아침 산책</div>
+        <div class="tl-desc">상쾌한 봄 아침 공기를 마시며 함께하는 여유로운 산책 시간.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time"></div>
+      <div class="tl-line-wrap"><div class="tl-dot"></div><div class="tl-connector"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🏠 귀가</div>
+        <div class="tl-desc">소중한 추억을 가득 담아 안전하게 귀가합니다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"><div class="sep-line"></div><div class="sep-icon">✨</div><div class="sep-line"></div></div>
+
+<!-- ── 장소 ── -->
+<section class="reveal">
+  <p class="section-label">Location · 오시는 길</p>
+  <h2 class="section-title">장소 안내</h2>
+  <div class="location-box">
+    <div class="location-name">문경 최고의 장소</div>
+    <div class="location-addr">
+      경상북도 문경시<br>
+      상세 주소는 추후 공지드립니다 📌
+    </div>
+    <a href="https://map.naver.com/v5/search/문경" target="_blank" class="map-btn">
+      🗺️ 네이버 지도로 보기
+    </a>
+  </div>
+</section>
+
+<div class="sep"><div class="sep-line"></div><div class="sep-icon">🎒</div><div class="sep-line"></div></div>
+
+<!-- ── 준비물 ── -->
+<section class="reveal">
+  <p class="section-label">Checklist · 준비물</p>
+  <h2 class="section-title">이것만 챙겨오세요</h2>
+  <p class="section-body">
+    즐거운 봄 야유회를 위해 간단한 준비물만 챙겨오시면 됩니다.
   </p>
-</div>
+  <div class="tag-wrap">
+    <div class="tag">👟 편한 운동화</div>
+    <div class="tag">🧥 겉옷 한 벌</div>
+    <div class="tag">🧴 선크림</div>
+    <div class="tag">📷 추억을 담을 카메라</div>
+    <div class="tag">💊 개인 상비약</div>
+    <div class="tag">🎵 신나는 마음</div>
+  </div>
+</section>
 
-<!-- 마무리 -->
-<div class="section">
-  <p>
-    귀한 시간을 내어 함께해주시면<br>
-    진심으로 감사드리겠습니다 🙏
+<!-- ── 마무리 ── -->
+<div class="closing">
+  <h2 class="closing-title">함께여서<br>더 아름다운 봄</h2>
+  <p class="closing-body">
+    황금비앤피와 함께하는 이 소중한 시간이<br>
+    오래도록 기억에 남는 추억이 되기를 바랍니다.<br><br>
+    여러분의 참여를 진심으로 기다립니다 🌸
   </p>
+  <div class="closing-sig">황금비앤피 드림</div>
 </div>
 
+<script>
+  // 스크롤 reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => io.observe(el));
+</script>
 </body>
 </html>
